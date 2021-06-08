@@ -20,8 +20,8 @@
 		<p>
 			Password: <input type="password" name="password">
 		</p>
-		<button type="submit">LogIn</button>
-		<button type="reset">reset</button>
+		<button type="submit">Login</button>
+		<button type="reset">Reset</button>
 	</form>
 </body>
 </html>

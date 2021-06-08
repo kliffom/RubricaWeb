@@ -38,14 +38,16 @@ public class Contact {
 	public String getName() {
 		return name;
 	}
-	public void setName(String name) {
+	public Contact setName(String name) {
 		this.name = name;
+		return this;
 	}
 	public String getSurname() {
 		return surname;
 	}
-	public void setSurname(String surname) {
+	public Contact setSurname(String surname) {
 		this.surname = surname;
+		return this;
 	}
 	public Set<Email> getEmails() {
 		return emails;

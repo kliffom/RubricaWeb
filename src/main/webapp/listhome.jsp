@@ -72,7 +72,7 @@
 <% }
 	else {
 %>
-		<p><a href="">Aggiungi nuovo contatto</a></p>
+		<p><a href="add-contact.jsp">Aggiungi nuovo contatto</a></p>
 <%	}
 %>
 	
