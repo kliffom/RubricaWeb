@@ -11,6 +11,7 @@ import javax.servlet.http.HttpServletResponse;
 
 import it.rdev.rubrica.model.ContactDao;
 import it.rdev.rubrica.model.entities.Contact;
+import it.rdev.rubrica.model.entities.Email;
 import it.rdev.rubrica.model.entities.Phone;
 
 /**
@@ -36,10 +37,14 @@ public class ContactInformationServlet extends HttpServlet {
 		
 		Contact contatto = ContactDao.getContact(Integer.parseInt(request.getParameter("id")));
 		
-		List<Phone> phones = ContactDao.getPhonesById(contatto.getId());
+//		List<Phone> phones = ContactDao.getPhonesByIdNative(contatto.getId());
+		List<Phone> phones = ContactDao.getPhonesByContact(contatto);
 		
+		List<Email> mails = ContactDao.getEmailsByContact(contatto);
+				
 		request.setAttribute("contact", contatto);
 		request.setAttribute("phones", phones);
+		request.setAttribute("mails", mails);
 		
 		request.getRequestDispatcher("contact-informations.jsp").forward(request, response);
 	}

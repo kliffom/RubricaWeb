@@ -12,6 +12,7 @@ import javax.persistence.criteria.Root;
 import javax.persistence.Query;
 
 import it.rdev.rubrica.model.entities.Contact;
+import it.rdev.rubrica.model.entities.Email;
 import it.rdev.rubrica.model.entities.Phone;
 import it.rdev.rubrica.model.util.DBUtil;
 
@@ -83,6 +84,38 @@ public class ContactDao {
 		return contacts;
 	}
 	
+	public static List<Phone> getPhonesByContact(Contact con) {
+		EntityManager em = DBUtil.getEntityManager(DBUtil.RUBRICA_WEB_PU);
+		String qString = "Select p from Phone p where p.contact=:cont";
+		TypedQuery<Phone> q = em.createQuery(qString, Phone.class);
+		q.setParameter("cont", con);
+		List<Phone> phones = null;
+		try {
+			phones = q.getResultList();
+		} catch (Exception e) {
+			System.out.println(e);
+		} finally {
+			em.close();
+		}
+		return phones;
+	}
+	
+	public static List<Email> getEmailsByContact(Contact con) {
+		EntityManager em = DBUtil.getEntityManager(DBUtil.RUBRICA_WEB_PU);
+		String qString = "Select e from Email e where e.contact=:cont";
+		TypedQuery<Email> q = em.createQuery(qString, Email.class);
+		q.setParameter("cont", con);
+		List<Email> emails = null;
+		try {
+			emails = q.getResultList();
+		} catch (Exception e) {
+			System.out.println(e);
+		} finally {
+			em.close();
+		}
+		return emails;
+	}
+	
 	public static List<Contact> findAll() {
 		EntityManager em = DBUtil.getEntityManager(DBUtil.RUBRICA_WEB_PU);
 		String qString = "Select c from Contact c JOIN c.phones p";
@@ -99,7 +132,8 @@ public class ContactDao {
 	}
 	
 	@SuppressWarnings("unchecked")
-	public static List<Phone> getPhonesById(int id) {
+	@Deprecated
+	public static List<Phone> getPhonesByIdNative(int id) {
 		EntityManager em = DBUtil.getEntityManager(DBUtil.RUBRICA_WEB_PU);
 		String query = "SELECT nt.telefono FROM num_telefono nt"
 				+ "WHERE nt.ID_contatto = ?";
