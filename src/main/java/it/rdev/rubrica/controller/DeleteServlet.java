@@ -11,16 +11,16 @@ import it.rdev.rubrica.model.ContactDao;
 import it.rdev.rubrica.model.entities.Contact;
 
 /**
- * Servlet implementation class AddContactServlet
+ * Servlet implementation class DeleteServlet
  */
-@WebServlet("/AddContactServlet")
-public class AddContactServlet extends HttpServlet {
+@WebServlet("/DeleteServlet")
+public class DeleteServlet extends HttpServlet {
 	private static final long serialVersionUID = 1L;
        
     /**
      * @see HttpServlet#HttpServlet()
      */
-    public AddContactServlet() {
+    public DeleteServlet() {
         super();
         // TODO Auto-generated constructor stub
     }
@@ -31,9 +31,8 @@ public class AddContactServlet extends HttpServlet {
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		// TODO Auto-generated method stub
 		
-		Contact con = new Contact().setName(request.getParameter("name")).setSurname(request.getParameter("surname"));
-		
-		ContactDao.insert(con);
+		Contact con = ContactDao.getContact(Integer.parseInt(request.getParameter("id")));
+		ContactDao.delete(con);
 		response.sendRedirect("/RubricaWeb/");
 		//request.getRequestDispatcher("/").forward(request, response);
 	}

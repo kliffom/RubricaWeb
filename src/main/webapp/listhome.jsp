@@ -56,7 +56,7 @@
 		<% }
 			else {
 		%>
-			<td><a href="">Elimina</a></td>
+			<td><a href="/RubricaWeb/DeleteServlet?id=<%= con.getId() %>">Elimina</a></td>
 		<%	}
 		%>
 		</tr>

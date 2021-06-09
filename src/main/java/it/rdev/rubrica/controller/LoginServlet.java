@@ -52,8 +52,8 @@ public class LoginServlet extends HttpServlet {
 			HttpSession session = request.getSession();
 			session.invalidate();
 		}
-		
-		request.getRequestDispatcher("/").forward(request, response);
+		response.sendRedirect("/RubricaWeb/");
+		//request.getRequestDispatcher("/").forward(request, response);
 	}
 
 	/**
